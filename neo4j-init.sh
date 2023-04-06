@@ -14,4 +14,6 @@ secret="${secret:-admin@1234}"
 
 docker run --name "$container_name" -p 7474:7474 -p 7687:7687 -v $(pwd)/ne04j-init-data:/data -d -e NEO4J_AUTH=neo4j/${secret}  neo4j:latest
 
-
+# docker exec -it neo4j_local bash
+# cypher-shell -u neo4j -p admin@1234
+#  --env NEO4J_dbms_memory_pagecache_size=1G
