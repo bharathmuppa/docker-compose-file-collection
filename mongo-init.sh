@@ -1,16 +1,19 @@
 #!/bin/bash
-# This is file to start mongo with one primary, one secondary and one arbitter systems.
+# This is file to start mongo db on your machine.
 
-read -p 'Container Name [postgres-local]:' container_name
+read -p 'Container Name [mongo-local]:' container_name
+container_name="${container_name:-mongo_local}"
+
 read -p 'Database Name [test-db]:' db_name
-read -p 'User [root]:' user
+db_name="${db_name:-test_db}"
+
+read -p 'User [root]:' user_name
+user_name="${user_name:-root}"
+
 read -p 'Password [admin]:' secret
+secret="${secret:-admin}"
 
-container_name = ${container_name:-PostgresLocal}
-db_name = ${db_name:-test-db}
-user=${user:-root}
-secret = ${secretL-secret}
 
- docker run --name $container_name -v $(pwd)/mongo-init-data:/data/db -d mongo:tag -p 27017:27017    --wiredTigerCacheSizeGB 1.5  -e MONGO_INITDB_ROOT_USERNAME=$user
-	-e MONGO_INITDB_ROOT_PASSWORD=$secret
+docker run --name "$container_name" -v "$(pwd)/mongo-init-data:/data/db" -d -p 27017:27017  -e MONGO_INITDB_ROOT_USERNAME="$user_name" -e MONGO_INITDB_ROOT_PASSWORD="$secret"  MONGO_INITDB_DATABASE="$db_name" mongo:latest
+
 
