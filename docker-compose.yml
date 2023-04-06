@@ -1,6 +1,6 @@
 services:
   mongodb-primary:
-    image: jfrog-mirai.asml.com/mirai-docker/bitnami/mongodb:5.0
+    image: bitnami/mongodb
     environment:
       - MONGODB_ADVERTISED_HOSTNAME=mongodb-primary
       - MONGODB_REPLICA_SET_MODE=primary
@@ -10,7 +10,7 @@ services:
       - "27018:27017"
 
   mongodb-secondary:
-    image: jfrog-mirai.asml.com/mirai-docker/bitnami/mongodb:5.0
+    image: bitnami/mongodb
     depends_on:
       - mongodb-primary
     environment:
@@ -21,7 +21,7 @@ services:
       - MONGODB_REPLICA_SET_KEY=replicasetkey
 
   mongodb-arbiter:
-    image: jfrog-mirai.asml.com/mirai-docker/bitnami/mongodb:5.0
+    image: bitnami/mongodb
     depends_on:
       - mongodb-primary
     environment:
@@ -41,12 +41,6 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=scep
-  ems:
-    image: ems:1.0.0
-    ports:
-      - "7222:7222"
-    environment:
-      - EMS_CONFIG=/opt/tibco/ems/docker/tibemsd-configbase.json
     
       
       
