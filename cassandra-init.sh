@@ -13,4 +13,4 @@ user_name="${user_name:-root}"
 read -p 'Password [admin]:' secret
 secret="${secret:-admin}"
 
-docker run --name "$container_name" -p 9042:9042 -v $(pwd)/cassandra-init-data:/var/lib/cassandra -e CASSANDRA_KEYSPACE="$db_name" -e CASSANDRA_USERNAME="$user_name" -e CASSANDRA_PASSWORD="$secret"  -d cassandra:latest
+docker run --name "$container_name" -p 9042:9042 -v $(pwd)/data/cassandra:/var/lib/cassandra -e CASSANDRA_KEYSPACE="$db_name" -e CASSANDRA_USERNAME="$user_name" -e CASSANDRA_PASSWORD="$secret"  -d cassandra:latest

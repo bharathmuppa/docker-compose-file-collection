@@ -14,6 +14,6 @@ read -p 'Password [admin]:' secret
 secret="${secret:-admin}"
 
 
-docker run --name "$container_name" -v "$(pwd)/mongo-init-data:/data/db" -d -p 27017:27017  -e MONGO_INITDB_ROOT_USERNAME="$user_name" -e MONGO_INITDB_ROOT_PASSWORD="$secret"  MONGO_INITDB_DATABASE="$db_name" mongo:latest
+docker run --name "$container_name" -v "$(pwd)/data/mongo:/data/db" -d -p 27017:27017  -e MONGO_INITDB_ROOT_USERNAME="$user_name" -e MONGO_INITDB_ROOT_PASSWORD="$secret"  MONGO_INITDB_DATABASE="$db_name" mongo:latest
 
 

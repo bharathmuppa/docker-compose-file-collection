@@ -16,5 +16,5 @@ read -p 'Password [admin]:' secret
 secret="${secret:-admin}"
 
 
-docker run --name "$container_name" -d -p 5432:5432 -v $(pwd)/postgres-init-data:/var/lib/postgresql/data -e POSTGRES_PASSWORD="$secret" -e POSTGRES_USER="$user_name" -e POSTGRES_DB="$db_name" postgres:latest
+docker run --name "$container_name" -d -p 5432:5432 -v $(pwd)/data/postgres:/var/lib/postgresql/data -e POSTGRES_PASSWORD="$secret" -e POSTGRES_USER="$user_name" -e POSTGRES_DB="$db_name" postgres:latest
 
